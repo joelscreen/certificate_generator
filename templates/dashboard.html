@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - Dashboard</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;" onclick="window.location.href='/dashboard'">Dashboard</button>
+                <button onclick="window.location.href='/profile'">Profile</button>
+            </div>
+            <div class="content">
+                <span style="font-size: 42px; color: #1F2937;" id="greeting">Hello User</span>
+                <br>
+                <br>
+                <div style="display: flex;">
+                    <div class="stats-cards" id="total-cert">
+                        Total Certificates
+                    </div>
+                    &emsp;
+                    <div class="stats-cards" style="max-width: 700px;">
+                        Latest Certificate: <br>
+                        <span style="font-size: 33px; color: #c79c0f;" id="latest-cert">No Certificates Achieved Yet</span>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <table id="cert-table">
+                    <tr>
+                        <th>Certificate</th>
+                        <th>Date</th>
+                        <th>Teacher</th>
+                        <th>Download</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="{{url_for('static', filename='dashboard.js')}}"></script>
+    </body>
+</html>
