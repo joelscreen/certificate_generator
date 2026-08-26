@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - History</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="container" style="justify-content: start;">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button onclick="window.location.href='/generate-dashboard'">Dashboard</button>
+                <button onclick="window.location.href='/bulk-generate'">Bulk Generate</button>
+                <button onclick="window.location.href='/generate-history'">History</button>
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;" onclick="window.location.href='/generate-students'">Students</button>
+                <button onclick="window.location.href='/generate-profile'">Profile</button>
+            </div>
+            <div class="content">
+                <table id="students-table">
+                    <tr>
+                        <th>Srl No.</th>
+                        <th>Students</th>
+                        <th>Grade</th>
+                        <th>Total Certificates</th>
+                    </tr>
+                </table>
+            </div>            
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="{{url_for('static', filename='generate-students.js')}}"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - Generate Certificate</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button onclick="window.location.href='/generate-dashboard'">Dashboard</button>
+                <button onclick="window.location.href='/bulk-generate'">Bulk Generate</button>
+                <button onclick="window.location.href='/generate-history'">History</button>
+                <button onclick="window.location.href='/generate-students'">Students</button>
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;">Profile</button>
+            </div>
+            <div class="content">
+                <div class="stats-cards" id="profile-details" style="text-align: start; width: 80vw; font-size: 28px;">
+                    <h4 style="margin: 0px;">Student Information</h4>
+                    Name: <br>
+                    Grade: <br>
+                    Email: <br>
+                    Login ID: <br>
+                    User Type: <br>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="{{url_for('static', filename='generate-profile.js')}}"></script>
+    </body>
+</html>

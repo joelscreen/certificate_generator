@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - Generate Certificate</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='bulk-generate-styles.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button onclick="window.location.href='/generate-dashboard'">Dashboard</button>
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;">Bulk Generate</button>
+                <button onclick="window.location.href='/generate-history'">History</button>
+                <button onclick="window.location.href='/generate-students'">Students</button>
+                <button onclick="window.location.href='/generate-profile'">Profile</button>
+            </div>
+            <div style="display: flex; flex-direction: column; animation: fadeIn 0.8s ease-in-out;">
+                <div style="display: flex; flex-direction: column; padding-top: 180px;">
+                    <div style="display: flex; justify-content: center;">
+                        <div class="sidebar">
+                            <h2 style="font-size: 25px;">EDIT THE CERTIFICATE</h2>
+                            <div class="sidebar-edit">
+                                <div class="details"> 
+                                    Student Names: &nbsp;
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Date: &nbsp;
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Reason: &nbsp;
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Custom Reason: &nbsp;
+                                </div>
+                                <div class="input-fields">
+                                    <div class="autocomplete-container">
+                                        <input type="text" placeholder="Name..." id="input-name" autocomplete="off">
+                                        <div id="student-suggestions" class="suggestions"></div>
+                                    </div>
+                                    <br>
+                                    <input type="text" placeholder="Date..." id="input-date">
+                                    <br>
+                                    <br>
+                                    <select id="input-reason">
+                                        <option value="--- PLEASE SELECT AN OPTION ---">--- PLEASE SELECT AN OPTION ---</option>
+                                    </select>
+                                    <br>
+                                    <br>
+                                    <input type="text" placeholder="Reason..." id="input-custom-reason">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="download">
+                                <button class="download-btn" id="download-btn">DOWNLOAD</button>
+                            </div>
+                            <br>
+                            <div class="send">
+                                <button class="send-btn" id="send-btn">SEND</button>
+                            </div>
+                        </div>
+                        <div class="selected-students">
+                            <h2>SELECTED STUDENTS</h2>
+                            <table id="sel-stud">
+                                <tr>
+                                    <th>Srl No.</th>
+                                    <th>Name</th>
+                                    <th>Grade</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="{{url_for('static', filename='bulk-generate.js')}}"></script>
+    </body>
+</html>

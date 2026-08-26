@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - Generate Certificate</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;" onclick="window.location.href='/generate-dashboard'">Dashboard</button>
+                <button onclick="window.location.href='/bulk-generate'">Bulk Generate</button>
+                <button onclick="window.location.href='/generate-history'">History</button>
+                <button onclick="window.location.href='/generate-students'">Students</button>
+                <button onclick="window.location.href='/generate-profile'">Profile</button>
+            </div>
+            <div style="display: flex; flex-direction: column; animation: fadeIn 0.8s ease-in-out;">
+                <h2 style="font-size: 45px; padding-top: 120px; padding-left: 20px;" id="welcome-msg">Welcome back!!</h2>
+                <div class="main-content">
+                    <div class="sidebar">
+                        <h2 style="font-size: 25px;">EDIT THE CERTIFICATE</h2>
+                        <div class="sidebar-edit">
+                            <div class="details"> 
+                                <div class="field">
+                                    <label for="input-name">Name:</label>
+                                    <div class="autocomplete-container">
+                                        <input type="text" id="input-name" placeholder="Name..." autocomplete="off">
+                                        <div id="student-suggestions" class="suggestions"></div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="input-grade">Grade:</label>
+                                    <input type="text" id="input-grade" placeholder="Grade...">
+                                </div>
+                                <div class="field">
+                                    <label for="input-date">Date:</label>
+                                    <input type="text" id="input-date" placeholder="Date...">
+                                </div>
+                                <div class="field">
+                                    <label for="input-reason">Reason:</label>
+                                    <select id="input-reason">
+                                        <option value="--- PLEASE SELECT AN OPTION ---">--- PLEASE SELECT AN OPTION ---</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="input-custom-reason">Custom Reason:</label>
+                                    <input type="text" id="input-custom-reason" placeholder="Custom Reason...">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="download">
+                            <button class="download-btn" id="download-btn">DOWNLOAD</button>
+                        </div>
+                        <br>
+                        <div class="send">
+                            <button class="send-btn" id="send-btn">SEND</button>
+                        </div>
+                        <div class="sent-status" id="sent-status"></div>
+                    </div>
+                    <div class="certificate" id="certificate">
+                        <img src="{{url_for('static', filename='certificate.png')}}" alt="certificate">
+
+                        <div id="cert-name" class="overlay name"></div>
+                        <div id="cert-grade" class="overlay grade"></div>
+                        <div id="cert-date" class="overlay date"></div>
+                        <div id="cert-reason" class="overlay reason"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="{{url_for('static', filename='generate-dashboard.js')}}"></script>
+    </body>
+</html>

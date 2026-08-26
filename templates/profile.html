@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Certificate Generator for Dunes - Dashboard</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='dashboard.css')}}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="top-navbar">
+                <div>Certificate System</div>
+                <div class="profile-overview">
+                    <span id="profile-overview-username"></span> &emsp; <a class="log-out" id="log-out">LOG OUT</a>
+                </div>
+            </div>
+            <div class="navbar">
+                <button onclick="window.location.href='/dashboard'">Dashboard</button>
+                <button style="color: #2563EB; border-bottom: 3px solid #2563EB;" onclick="window.location.href='/profile'">Profile</button>
+            </div>
+            <div class="content">
+                <span style="font-size: 42px; color: #1F2937;" id="greeting">Hello User</span>
+                <br>
+                <br>
+                <div class="stats-cards" id="profile-details" style="text-align: start; width: 80vw; font-size: 28px;">
+                    <h4 style="margin: 0px;">Student Information</h4>
+                    Name: <br>
+                    Grade: <br>
+                    Email: <br>
+                    Login ID: <br>
+                    User Type: <br>
+                </div>
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='profile.js')}}"></script>
+    </body>
+</html>
