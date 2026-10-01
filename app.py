@@ -1,12 +1,13 @@
 from flask import Flask, render_template, url_for, request, jsonify
 import base64
 from supabase import Client, create_client
+import os
 
 app = Flask(__name__)
 
 supabase: Client = create_client(
     "https://mgxpwhofrtssqitbghrn.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1neHB3aG9mcnRzc3FpdGJnaHJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMxNDYyODYsImV4cCI6MjA5ODcyMjI4Nn0.3eQhzV0I6HMed0BNLPZX6CM53dYZhpF1D9KFICOHYZo"
+    os.getenv("supabase_password")
 )
 
 @app.route("/")
