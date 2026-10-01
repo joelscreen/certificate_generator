@@ -56,10 +56,12 @@ async function update_profile_details() {
     profile_details.innerHTML = `
         <h4 style="margin: 0px;">Student Information</h4>
         Name: ${teacher.name}<br>
-        Grade: ${teacher.grade}${student.section}<br>
         Email: ${teacher_enrollment.email}<br>
+        Joined at: ${teacher_enrollment.enrolement_date}<br>
+        Enrolement ID: ${teacher_enrollment.enrolement_id}<br>
+        Enroled Grade: ${teacher_enrollment.enrolement_grade}<br>
         Login ID: ${localStorage.getItem("loginid")}<br>
-        User Type: Student<br>
+        User Type: Teacher<br>
     `
 }
 

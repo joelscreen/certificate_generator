@@ -74,7 +74,7 @@ async function downloadCertificate(reason, date, teacher, student, grade, sectio
 
     pdf.text(`${date.split("T")[0]}`, 140, 168, { align: "center" });
 
-    pdf.save(`${student}_certificate.pdf`);
+    pdf.save(`${student} certificate.pdf`);
 }
 
 // Teacher/Student ID
@@ -114,15 +114,16 @@ async function certificate_history(cert_table) {
     const usersResponse = await fetch("/get-users");
     const usersData = await usersResponse.json();
 
+    const studentsResponse = await fetch("/get-students");
+    const studentsData = await studentsResponse.json();
+
     data.data.forEach(award => {
 
-        const student = usersData.data.find(
-            user => user.id == award.student
-        );
+        // Students are searched in /get-students
+        const student = studentsData.data.find(student => student.id == award.student);
 
-        const teacher = usersData.data.find(
-            user => user.id == award.teacher
-        );
+        // Teachers are still searched in /get-users
+        const teacher = usersData.data.find(user => user.id == award.teacher);
 
         if (teacher && teacher.name == localStorage.getItem("username")) {
             history_list.push({
@@ -135,6 +136,7 @@ async function certificate_history(cert_table) {
             });
         }
     });
+
     cert_table.innerHTML = `
         <tr>
             <th>Certificate</th>
@@ -143,7 +145,8 @@ async function certificate_history(cert_table) {
             <th>Grade</th>
             <th>Download</th>
         </tr>
-    `
+    `;
+
     history_list.forEach((item) => {
         cert_table.innerHTML += `
             <tr>
@@ -165,8 +168,9 @@ async function certificate_history(cert_table) {
                 </td>
             </tr>
         `;
-    })
+    });
 }
+
 
 const cert_table = document.getElementById("teacher-cert-table");
 

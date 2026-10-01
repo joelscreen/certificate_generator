@@ -59,6 +59,8 @@ async function update_profile_details() {
         Name: ${student.name}<br>
         Grade: ${student.grade}${student.section}<br>
         Email: ${student_enrollment.email}<br>
+        Joined at: ${student_enrollment.enrolement_date}<br>
+        Enrolement ID: ${student_enrollment.enrolement_id}<br>
         Login ID: ${localStorage.getItem("loginid")}<br>
         User Type: Student<br>
     `

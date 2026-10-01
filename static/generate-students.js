@@ -21,7 +21,7 @@ const logout = document.getElementById("log-out");
 
 logout.addEventListener('click', function() {
     localStorage.clear()
-    window.location.reload(); 
+    window.location.reload();
 });
 
 // Profile Overview
@@ -30,61 +30,129 @@ const profile_overview = document.getElementById("profile-overview-username");
 profile_overview.textContent = `${localStorage.getItem("username")}`;
 
 // Student List
-async function certificate_history(student_table) {
-    const response = await fetch("/get-students");
-    const data = await response.json();
-    var students_list = []
-
-    data.data.forEach(award => {
-        student_table.innerHTML += `
-            <tr>
-                <td style="max-width: 550px;">${award.id}</td>
-                <td>${award.name}</td>
-                <td>${award.grade}${award.section}</td>
-                <td>${award.total_certificates}</td>
-            </tr>
-        `;
-    })
-}
-
 const student_table = document.getElementById("students-table");
+var student_list = {students_data: [["NO STUDENTS"]]};
+const grade_select = document.getElementById("grade-select");
+const section_select = document.getElementById("section-select");
 
-certificate_history(student_table);
+grade_select.addEventListener("change", function() {
+    student_table.innerHTML = `
+        <tr>
+            <th>Srl No.</th>
+            <th>Students</th>
+            <th>Grade</th>
+            <th>Total Certificates</th>
+        </tr>
+    `
+    certificate_history(student_table);
+});
 
-// Update Total Certificates
-let certificateCounts = {};
+section_select.addEventListener("change", function() {
+    student_table.innerHTML = `
+        <tr>
+            <th>Srl No.</th>
+            <th>Students</th>
+            <th>Grade</th>
+            <th>Total Certificates</th>
+        </tr>
+    `
+    certificate_history(student_table);
+});
 
-async function generateTotalCertData() {
-    const history = await fetch("/get-history");
-    const h_data = await history.json();
+async function certificate_history(student_table) {
+    const studentsResponse = await fetch("/get-students");
+    const studentsData = await studentsResponse.json();
 
-    h_data.data.forEach(award => {
+    if (student_list.students_data[0] == "NO STUDENTS") {
+        student_list.students_data = studentsData;
+    }
+
+    if (grade_select.value != "all") {
+        student_list.students_data = studentsData;
+        if (grade_select.value == "7") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.grade == "7");
+            if (section_select.value == "A") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "A");
+            }
+            if (section_select.value == "B") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "B");
+            }
+            if (section_select.value == "C") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "C");
+            }
+        }
+        if (grade_select.value == "8") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.grade == "8");
+            if (section_select.value == "A") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "A");
+            }
+            if (section_select.value == "B") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "B");
+            }
+            if (section_select.value == "C") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "C");
+            }
+        }
+        if (grade_select.value == "9") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.grade == "9");
+            if (section_select.value == "A") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "A");
+            }
+            if (section_select.value == "B") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "B");
+            }
+            if (section_select.value == "C") {
+                student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "C");
+            }
+        }
+    }
+    else if (section_select != "all") {
+        student_list.students_data = studentsData;
+        if (section_select.value == "A") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "A");
+        }
+        if (section_select.value == "B") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "B");
+        }
+        if (section_select.value == "C") {
+            student_list.students_data = studentsData;
+            student_list.students_data.data = student_list.students_data.data.filter(element => element.section == "C");
+        }
+    }
+    else {
+        student_list.students_data = studentsData;
+    }
+
+    const historyResponse = await fetch("/get-history");
+    const historyData = await historyResponse.json();
+
+    const certificateCounts = {};
+
+    historyData.data.forEach(award => {
         if (!certificateCounts[award.student]) {
             certificateCounts[award.student] = 0;
         }
 
         certificateCounts[award.student]++;
     });
-}
 
-async function postTotalCertData(student) {
-    await fetch("/update-total-certificates", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            total_certificates: certificateCounts
-        })
+    student_list.students_data.data.forEach((student, index) => {
+        const totalCertificates = certificateCounts[student.id] || 0;
+
+        student_table.innerHTML += `
+            <tr>
+                <td style="max-width: 550px;">${index+1}</td>
+                <td>${student.name}</td>
+                <td>${student.grade}${student.section}</td>
+                <td>${totalCertificates}</td>
+            </tr>
+        `;
     });
 }
 
-async function init() {
-    await generateTotalCertData();
-
-    for (const student in certificateCounts) {
-        await postTotalCertData(student);
-    }
-}
-
-init();
+certificate_history(student_table);
