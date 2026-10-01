@@ -40,7 +40,7 @@
                                     <br>
                                     <br>
                                     <br>
-                                    Custom Reason: &nbsp;
+                                    Template: &nbsp;
                                 </div>
                                 <div class="input-fields">
                                     <div class="autocomplete-container">
@@ -51,12 +51,16 @@
                                     <input type="text" placeholder="Date..." id="input-date">
                                     <br>
                                     <br>
-                                    <select id="input-reason">
-                                        <option value="--- PLEASE SELECT AN OPTION ---">--- PLEASE SELECT AN OPTION ---</option>
+                                    <div class="autocomplete-container">
+                                        <input type="text" id="input-reason" placeholder="Reason..." autocomplete="off">
+                                        <div id="student-suggestions-reason" class="suggestions"></div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <select name="template" id="template">
+                                        <option value="default">Default Dunes Template</option>
+                                        <option value="temp">Temporary School Template</option>
                                     </select>
-                                    <br>
-                                    <br>
-                                    <input type="text" placeholder="Reason..." id="input-custom-reason">
                                 </div>
                             </div>
                             <br>

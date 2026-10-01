@@ -45,13 +45,17 @@
                                 </div>
                                 <div class="field">
                                     <label for="input-reason">Reason:</label>
-                                    <select id="input-reason">
-                                        <option value="--- PLEASE SELECT AN OPTION ---">--- PLEASE SELECT AN OPTION ---</option>
-                                    </select>
+                                    <div class="autocomplete-container">
+                                        <input type="text" id="input-reason" placeholder="Reason..." autocomplete="off">
+                                        <div id="student-suggestions-reason" class="suggestions"></div>
+                                    </div>
                                 </div>
                                 <div class="field">
-                                    <label for="input-custom-reason">Custom Reason:</label>
-                                    <input type="text" id="input-custom-reason" placeholder="Custom Reason...">
+                                    <label for="input-template">Template:</label>
+                                    <select name="template" id="template">
+                                        <option value="default">Default Dunes Template</option>
+                                        <option value="temp">Temporary School Template</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -71,12 +75,7 @@
                         <div class="sent-status" id="sent-status"></div>
                     </div>
                     <div class="certificate" id="certificate">
-                        <img src="{{url_for('static', filename='certificate.png')}}" alt="certificate">
-
-                        <div id="cert-name" class="overlay name"></div>
-                        <div id="cert-grade" class="overlay grade"></div>
-                        <div id="cert-date" class="overlay date"></div>
-                        <div id="cert-reason" class="overlay reason"></div>
+                        
                     </div>
                 </div>
             </div>

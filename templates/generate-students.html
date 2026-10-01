@@ -22,14 +22,30 @@
                 <button onclick="window.location.href='/generate-profile'">Profile</button>
             </div>
             <div class="content">
-                <table id="students-table">
-                    <tr>
-                        <th>Srl No.</th>
-                        <th>Students</th>
-                        <th>Grade</th>
-                        <th>Total Certificates</th>
-                    </tr>
-                </table>
+                <div>
+                    <select name="grade" id="grade-select" style="height: 40px; width: 60px; padding-left: 10px;">
+                        <option value="all">ALL</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select>
+                    <select name="section" id="section-select" style="height: 40px; width: 60px; padding-left: 10px;">
+                        <option value="all">ALL</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                    <br>
+                    <br>
+                    <table id="students-table">
+                        <tr>
+                            <th>Srl No.</th>
+                            <th>Students</th>
+                            <th>Grade</th>
+                            <th>Total Certificates</th>
+                        </tr>
+                    </table>
+                </div>
             </div>            
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
