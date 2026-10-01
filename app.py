@@ -6,8 +6,8 @@ import os
 app = Flask(__name__)
 
 supabase: Client = create_client(
-    os.getenv("supabase_url"),
-    os.getenv("supabase_key")
+    os.getenv("SUPABASE_URL"),
+    os.getenv("SUPABASE_KEY")
 )
 
 @app.route("/")
