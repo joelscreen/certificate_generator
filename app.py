@@ -78,6 +78,7 @@ def update_history():
         teacher = data.get("teacher")
         student = data.get("student")
         reason = data.get("reason")
+        template = data.get("template")
 
         student_response = (
             supabase.table("Students")
@@ -100,7 +101,8 @@ def update_history():
             "student": student,
             "reason": reason,
             "grade": grade,
-            "section": section
+            "section": section,
+            "template": template
         }).execute()
 
         return jsonify({"message": "History updated successfully"}), 200
@@ -147,33 +149,6 @@ def get_events():
         return jsonify({"data": response.data}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-@app.route("/send-email", methods=["POST"])
-def send_email():
-    data = request.get_json()
-    image_data = data["image"]
-
-    image_data = image_data.split(",")[1]
-
-    image_bytes = base64.b64decode(image_data)
-
-    msg = Message(
-        subject="Your Certificate",
-        sender="joelmendonca.2602@gmail.com",
-        recipients=[data["email"]]
-    )
-
-    msg.body = "Congratulations!! You have recieved a certificate from Dunes International School."
-
-    msg.attach(
-        "certificate.png",
-        "image/png",
-        image_bytes
-    )
-
-    mail.send(msg)
-
-    return {"Email sent successfully!"}, 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
